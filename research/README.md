@@ -41,7 +41,7 @@ Completed 2026-10-08. Product/research navigation menus were opened on Stripe, N
 
 ### Batch 4 — Vercel, GitHub, Netflix, Spotify, Airbnb
 
-Completed 2026-10-08. Six interactions were captured: Vercel product menu expansion, GitHub feature-tab selection, Netflix FAQ disclosure, Spotify search results while typing, and Airbnb date-range and location selection. The GitHub page was loaded in an isolated logged-out context. No account, purchase, or signup flow was entered.
+Completed 2026-10-08. Seven interactions were captured: Vercel product menu expansion and direct Pricing navigation, GitHub feature-tab selection, Netflix FAQ disclosure, Spotify search results while typing, and Airbnb date-range and location selection. The GitHub page was loaded in an isolated logged-out context. No account, purchase, or signup flow was entered.
 
 ## Cross-site validation — initial pass
 

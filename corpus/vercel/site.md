@@ -6,4 +6,4 @@ page_title: Agentic Infrastructure - Vercel
 batch: 4
 ---
 
-Interaction evidence: [Products menu](../../observations/vercel/products-menu.md). Header page map: [primary navigation](page-inventory.md).
+Interaction evidence: [Products menu](../../observations/vercel/products-menu.md) and [direct Pricing link](../../observations/vercel/pricing-direct-link.md). Header page map: [primary navigation](page-inventory.md).

@@ -19,7 +19,7 @@ Initial research targets from the project brief. The focus column records a ques
 | 13 | Mistral AI | https://mistral.ai/ | 3 | AI product navigation and language choice; replaces blocked OpenAI target | Interaction recorded |
 | 14 | Anthropic | https://www.anthropic.com/ | 3 | Product and research content exploration | Interaction recorded |
 | 15 | DuckDuckGo / Duck.ai | https://duckduckgo.com/ | 3 | Search and optional AI chat handoff; replaces blocked Perplexity target | 2 interactions recorded |
-| 16 | Vercel | https://vercel.com/ | 4 | Documentation navigation and conversion path | Interaction recorded |
+| 16 | Vercel | https://vercel.com/ | 4 | Documentation navigation and conversion path | 2 interactions recorded |
 | 17 | GitHub | https://github.com/ | 4 | Repository discovery and collaboration paths | Interaction recorded |
 | 18 | Netflix | https://www.netflix.com/ | 4 | Content discovery and selection | Interaction recorded |
 | 19 | Spotify | https://open.spotify.com/ | 4 | Search, discovery, and recommendation exploration | Interaction recorded |
