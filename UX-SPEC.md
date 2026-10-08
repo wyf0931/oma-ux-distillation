@@ -20,6 +20,7 @@ record_formats:
   pattern:
     required:
       - record_type
+      - status
       - name
       - definition
       - problem
@@ -51,6 +52,10 @@ interaction_schema:
     - action
     - response
     - state
+pattern_statuses:
+  - candidate
+  - validated
+  - rejected
 confidence_levels:
   low: The claim has plausible alternatives or is only weakly connected to the observed state.
   medium: The claim fits direct evidence, but reproduction or cross-site comparison is limited.
@@ -174,6 +179,7 @@ Pattern records use this YAML front matter and a Markdown body for cross-site re
 ```markdown
 ---
 record_type: pattern
+status: validated
 name: Expanded Primary Navigation
 definition: A top-level control opens related destinations without leaving the current page.
 problem: Visitors need to choose among several destinations under one broad topic.
@@ -215,6 +221,8 @@ Activating an expandable top-level control reveals related destinations while pr
 
 Direct links navigate to one destination and do not instantiate this pattern.
 ```
+
+Use `status: candidate` for a hypothesis that still needs independent examples or counterexample search; use `status: validated` only after it meets the promotion criteria below. Keep rejected hypotheses with `status: rejected` only when their history is useful.
 
 The Markdown body should state:
 

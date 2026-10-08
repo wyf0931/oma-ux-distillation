@@ -104,6 +104,7 @@ A cross-site validated pattern must contain:
 
 ```yaml
 record_type: pattern
+status: candidate | validated | rejected
 name:
 definition:
 problem:
