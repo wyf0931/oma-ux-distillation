@@ -41,8 +41,8 @@ Completed 2026-10-08. Product/research navigation menus were opened on Stripe, N
 
 ### Batch 4 — Vercel, GitHub, Netflix, Spotify, Airbnb
 
-Completed 2026-10-08. Seven interactions were captured: Vercel product menu expansion and direct Pricing navigation, GitHub feature-tab selection, Netflix FAQ disclosure, Spotify search results while typing, and Airbnb date-range and location selection. The GitHub page was loaded in an isolated logged-out context. No account, purchase, or signup flow was entered.
+Completed 2026-10-08. Eight interactions were captured: Vercel product menu expansion and direct Pricing navigation, GitHub feature-tab selection and feature-demo pause, Netflix FAQ disclosure, Spotify search results while typing, and Airbnb date-range and location selection. The GitHub page was loaded in isolated logged-out contexts. No account, purchase, or signup flow was entered.
 
 ## Cross-site validation — initial pass
 
-Completed 2026-10-08 over the active 20-site corpus. The two blocked initial candidates were replaced under the corpus adjustment rule, and remain listed as deferred. The repository contains 25 individual interaction observations, five page maps, and four promoted patterns supported across two to seven independent sites. Their scope, variants, boundaries, and supporting observation links are documented in `patterns/`. This is an initial validation pass, not a complete UX grammar or token system.
+Completed 2026-10-08 over the active 20-site corpus. The two blocked initial candidates were replaced under the corpus adjustment rule, and remain listed as deferred. The repository contains 27 individual interaction observations, five page maps, and four promoted patterns supported across two to seven independent sites. Their scope, variants, boundaries, and supporting observation links are documented in `patterns/`. This is an initial validation pass, not a complete UX grammar or token system.

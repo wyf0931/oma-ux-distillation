@@ -1,6 +1,6 @@
 # Candidate: user-controlled automatic motion
 
-**Status:** promoted to [User-Controlled Automatic Motion](../patterns/user-controlled-automatic-motion.md) after pause behavior was verified on two independent sites; retain this file as the hypothesis and validation record.
+**Status:** promoted to [User-Controlled Automatic Motion](../patterns/user-controlled-automatic-motion.md) after pause behavior was observed on three independent sites; retain this file as the hypothesis and validation record.
 
 ## Hypothesis
 
@@ -10,6 +10,7 @@ When a featured media region advances or plays automatically, an explicit pause 
 
 - [Nike: autoplay pause control](../observations/nike/homepage-hero-pause-autoplay.md) — pausing changed the control label to Resume and the current slide stayed stable during the observed interval.
 - [Porsche: hero video pause](../observations/porsche/homepage-video-pause.md) — the control changed from Pause Video to Play Video.
+- [GitHub: feature-demo pause](../observations/github/feature-demo-animation-pause.md) — the control changed from Pause to Play.
 
 ## Validation questions
 

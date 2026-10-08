@@ -2,9 +2,9 @@
 site: IKEA
 page: Global homepage, store selector
 observed_at: 2026-10-08
-viewport: unknown
-browser: Google Chrome through connected computer-use browser
-tool: getApp accessibility state + click
+viewport: 1512x727 CSS pixels
+browser: Chrome DevTools MCP
+tool: take_snapshot + click + evaluate_script
 evidence_class: observed
 ---
 
@@ -33,7 +33,7 @@ purpose_hypothesis: let visitors switch the regional site without leaving the gl
 
 ## Evidence
 
-- Reproduction: open https://www.ikea.com/ and activate the Selected store control. A cookie notice appeared during the interaction; after choosing Reject, the store selector contents were readable.
-- Result: the accessibility state showed a Find online store combobox and seven store/language choices, with IKEA.sg (English) selected.
+- Reproduction: open https://www.ikea.com/ in a fresh page and activate the Selected store control.
+- Result: the button entered an expanded state. The page exposed a Find online store combobox and a listbox with seven options: IKEA.sg (English), IKEA.co.id (English and Bahasa Indonesia), IKEA.my (English and Bahasa Melayu), and IKEA.com/th (English and Thai). IKEA.sg (English) was selected.
 - Screenshot: not captured.
-- Notes / limits: no other store was selected, so destination and persistence behavior were not tested. This does not verify the separate designer-story carousel controls.
+- Notes / limits: no other store was selected, so destination and persistence behavior were not tested. A separate CUA run showed a cookie notice during the first attempt; this DevTools reproduction was unobstructed. The store state did not change. This does not verify the separate designer-story carousel controls.
