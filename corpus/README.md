@@ -11,7 +11,7 @@ Initial research targets from the project brief. The focus column records a ques
 | 5 | Tesla | https://www.tesla.com/ | 1 | Product exploration and conversion path | Interaction recorded |
 | 6 | Porsche | https://www.porsche.com/ | 2 | Vehicle discovery and product configuration | Interaction recorded |
 | 7 | Amazon | https://www.amazon.com/ | 2 | Search, filtering, comparison, and purchase discovery | Interaction recorded |
-| 8 | IKEA | https://www.ikea.com/ | 2 | Category discovery and room/product planning | Store selector recorded; slideshow unverified |
+| 8 | IKEA | https://www.ikea.com/ | 2 | Category discovery and room/product planning | 2 interactions recorded; autoplay control unverified |
 | 9 | Figma | https://www.figma.com/ | 2 | Product education and collaboration entry points | Interaction recorded |
 | 10 | Linear | https://linear.app/ | 2 | Workflow exploration and product navigation | Interaction recorded |
 | 11 | Stripe | https://stripe.com/ | 3 | Information architecture and developer task paths | Interaction recorded |

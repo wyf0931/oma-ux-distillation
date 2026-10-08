@@ -27,7 +27,7 @@ when_not_to_use:
   - All information needs to remain visible together for reference.
 variants:
   - Direct tab selection: Apple, Tesla, GitHub.
-  - Sequential Previous / Next: AMD, NVIDIA, Nike, Figma.
+  - Sequential Previous / Next: AMD, NVIDIA, Nike, Figma, IKEA.
   - Timed progression with a pause control: Nike.
 examples:
   - Apple
@@ -37,6 +37,7 @@ examples:
   - Tesla
   - Figma
   - GitHub
+  - IKEA
 evidence:
   - ../observations/apple/hero-product-tab-replacement.md
   - ../observations/amd/ai-portfolio-next-carousel.md
@@ -46,11 +47,12 @@ evidence:
   - ../observations/tesla/homepage-vehicle-slide-selection.md
   - ../observations/figma/community-carousel-next.md
   - ../observations/github/features-tab-plan.md
+  - ../observations/ikea/designer-stories-next.md
 ```
 
 ## Cross-site invariant
 
-Across seven independent sites, a user action changed the current item in a finite featured set and the interface reflected that state. On Apple, AMD, NVIDIA, Figma, and GitHub, the active item's supporting copy, media, or links were also observed to update. Nike and Tesla snapshots verified the current-slide or selected-tab state; their full associated-content update was not separately verified.
+Across eight independent sites, a user action changed the current item or position in a finite featured set and the interface reflected that state. On Apple, AMD, NVIDIA, Figma, and GitHub, the active item's supporting copy, media, or links were also observed to update. Nike and Tesla snapshots verified the current-slide or selected-tab state. IKEA's Next control made Previous available, confirming the carousel had advanced; its active card text was not compared before/after.
 
 ## Boundary cases
 

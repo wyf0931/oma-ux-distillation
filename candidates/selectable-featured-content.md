@@ -1,6 +1,6 @@
 # Candidate: selectable featured content
 
-**Status:** promoted to [Selectable Featured Content](../patterns/selectable-featured-content.md) after replication across seven sites; retain this file as the hypothesis and validation record.
+**Status:** promoted to [Selectable Featured Content](../patterns/selectable-featured-content.md) after replication across eight sites; retain this file as the hypothesis and validation record.
 
 ## Hypothesis
 
@@ -23,6 +23,7 @@ This remains a candidate. The examples may differ in whether they replace a comp
 - [Tesla: vehicle slide selection](../observations/tesla/homepage-vehicle-slide-selection.md) — direct tab selection changed the selected slide state.
 - [Figma: community carousel](../observations/figma/community-carousel-next.md) — Next changed the current resource and associated image/link.
 - [GitHub: Plan feature tab](../observations/github/features-tab-plan.md) — selecting a feature tab changed the selected state and its summary.
+- [IKEA: Designer stories carousel](../observations/ikea/designer-stories-next.md) — Next enabled Previous, showing the carousel left its initial position.
 
 ## Validation questions
 
