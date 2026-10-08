@@ -45,4 +45,4 @@ Completed 2026-10-08. Six interactions were captured: Vercel product menu expans
 
 ## Cross-site validation — initial pass
 
-Completed 2026-10-08 over the active 20-site corpus. The two blocked initial candidates were replaced under the corpus adjustment rule, and remain listed as deferred. The repository contains 24 individual interaction observations, three page maps, and four promoted patterns supported across two to seven independent sites. Their scope, variants, boundaries, and supporting observation links are documented in `patterns/`. This is an initial validation pass, not a complete UX grammar or token system.
+Completed 2026-10-08 over the active 20-site corpus. The two blocked initial candidates were replaced under the corpus adjustment rule, and remain listed as deferred. The repository contains 24 individual interaction observations, five page maps, and four promoted patterns supported across two to seven independent sites. Their scope, variants, boundaries, and supporting observation links are documented in `patterns/`. This is an initial validation pass, not a complete UX grammar or token system.

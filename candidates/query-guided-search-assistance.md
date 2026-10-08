@@ -1,4 +1,4 @@
-# Candidate: query-driven search results
+# Candidate: query-guided search assistance
 
 **Status:** promoted to [Query-Guided Search Assistance](../patterns/query-guided-search-assistance.md) after four independent examples; retain this file as the hypothesis and validation record.
 

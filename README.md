@@ -15,7 +15,7 @@ Observations describe visible behavior. Hypotheses and intent belong in a separa
 
 - `corpus/` — target sites, metadata, and batch status.
 - `observations/` — one concrete interaction per file, using the template.
-- `candidates/` — hypotheses awaiting cross site validation.
+- `candidates/` — hypothesis and promotion records that preserve how patterns were compared.
 - `patterns/` — only validated, evidence linked patterns.
 - `taxonomy/` — reserved until enough patterns exist to reveal useful clusters.
 - `research/` — batch log and repeatable capture protocol.
@@ -24,7 +24,7 @@ Observations describe visible behavior. Hypotheses and intent belong in a separa
 
 ## Current progress
 
-See [the corpus catalog](corpus/README.md) and [research log](research/README.md). The active corpus contains 20 sites, with 24 interaction observations, three page maps, and four cross-site patterns. OpenAI and Perplexity are deferred after human-verification challenges; Mistral AI and DuckDuckGo / Duck.ai are the documented substitutes. The UX Spec is in draft review; the Extraction Skill has not been authored yet.
+See [the corpus catalog](corpus/README.md) and [research log](research/README.md). The active corpus contains 20 sites, with 24 interaction observations, five page maps, and four cross-site patterns. OpenAI and Perplexity are deferred after human-verification challenges; Mistral AI and DuckDuckGo / Duck.ai are the documented substitutes. The UX Spec is in draft review; the Extraction Skill has not been authored yet.
 
 ## Add an observation
 

@@ -47,7 +47,7 @@ Across five sites, activating an expandable top-level control exposed related de
 
 ## Boundary cases
 
-Direct links such as Pricing in the Vercel, Notion, and Stripe headers navigate to one destination instead of opening a menu. Those controls are outside this pattern. Search forms and FAQ disclosures also have different triggers and state changes.
+Direct links such as Pricing appear beside expandable controls in the Vercel and Notion headers ([Vercel page map](../corpus/vercel/page-inventory.md), [Notion page map](../corpus/notion/page-inventory.md)). They expose one destination and are outside this pattern; their click response was not tested. Search forms and FAQ disclosures also have different triggers and state changes.
 
 ## Validation limits
 
