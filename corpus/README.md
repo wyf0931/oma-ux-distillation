@@ -23,7 +23,7 @@ Initial research targets from the project brief. The focus column records a ques
 | 17 | GitHub | https://github.com/ | 4 | Repository discovery and collaboration paths | 3 interactions recorded |
 | 18 | Netflix | https://www.netflix.com/ | 4 | Content discovery and selection | Interaction recorded |
 | 19 | Spotify | https://open.spotify.com/ | 4 | Search, discovery, and recommendation exploration | Interaction recorded |
-| 20 | Airbnb | https://www.airbnb.com/ | 4 | Search, filtering, and listing exploration | 3 interactions recorded |
+| 20 | Airbnb | https://www.airbnb.com/ | 4 | Search, filtering, and listing exploration | 4 interactions recorded |
 
 Site-specific notes and interaction observations live in `corpus/<site>/` and `observations/<site>/` respectively.
 
