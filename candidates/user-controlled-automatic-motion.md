@@ -11,6 +11,7 @@ When a featured media region advances or plays automatically, an explicit pause 
 - [Nike: autoplay pause control](../observations/nike/homepage-hero-pause-autoplay.md) — pausing changed the control label to Resume and the current slide stayed stable during the observed interval.
 - [Porsche: hero video pause](../observations/porsche/homepage-video-pause.md) — the control changed from Pause Video to Play Video.
 - [GitHub: feature-demo pause](../observations/github/feature-demo-animation-pause.md) — the control changed from Pause to Play.
+- [GitHub: feature-demo resume](../observations/github/feature-demo-resume.md) — the control changed from Play back to Pause.
 
 ## Validation questions
 

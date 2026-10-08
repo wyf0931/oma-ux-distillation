@@ -33,6 +33,7 @@ examples:
   - Porsche
 evidence:
   - ../observations/github/feature-demo-animation-pause.md
+  - ../observations/github/feature-demo-resume.md
   - ../observations/nike/homepage-hero-autoplay.md
   - ../observations/nike/homepage-hero-pause-autoplay.md
   - ../observations/porsche/homepage-video-pause.md
@@ -40,7 +41,7 @@ evidence:
 
 ## Cross-site invariant
 
-GitHub's feature-demo control began as Pause and changed to Play after the user action. Nike's carousel changed from Pause to Resume, and its selected slide remained stable during the observed pause interval. Porsche's hero video was already playing on page load; clicking Pause changed its control to Play Video, and read-only video state stayed paused at the same playback time across a three-second interval.
+GitHub's feature-demo control changed from Pause to Play and back to Pause when activated in each direction. Nike's carousel changed from Pause to Resume, and its selected slide remained stable during the observed pause interval. Porsche's hero video was already playing on page load; clicking Pause changed its control to Play Video, and read-only video state stayed paused at the same playback time across a three-second interval.
 
 ## Boundary cases
 
@@ -48,4 +49,4 @@ The pause affordance is relevant to automatic playback. Apple's `Play Hero galle
 
 ## Validation limits
 
-Resume was not tested. Keyboard, touch, reduced-motion preferences, and the behavior when a user leaves and returns to the page remain untested.
+Playback time or animation frames were not measured on GitHub. Keyboard, touch, reduced-motion preferences, and the behavior when a user leaves and returns to the page remain untested.

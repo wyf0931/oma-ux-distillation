@@ -24,7 +24,7 @@ Observations describe visible behavior. Hypotheses and intent belong in a separa
 
 ## Current progress
 
-See [the corpus catalog](corpus/README.md) and [research log](research/README.md). The active corpus contains 20 sites, with 28 interaction observations, five page maps, and four cross-site patterns. OpenAI and Perplexity are deferred after human-verification challenges; Mistral AI and DuckDuckGo / Duck.ai are the documented substitutes. The UX Spec is in draft review; the Extraction Skill has not been authored yet.
+See [the corpus catalog](corpus/README.md) and [research log](research/README.md). The active corpus contains 20 sites, with 29 interaction observations, five page maps, and four cross-site patterns. OpenAI and Perplexity are deferred after human-verification challenges; Mistral AI and DuckDuckGo / Duck.ai are the documented substitutes. The UX Spec is in draft review; the Extraction Skill has not been authored yet.
 
 ## Add an observation
 
