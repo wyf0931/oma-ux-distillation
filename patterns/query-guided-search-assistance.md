@@ -28,22 +28,25 @@ variants:
   - Live result groups: Spotify.
   - Explicit Search / AI chat choice: DuckDuckGo / Duck.ai.
   - Destination autocomplete: Airbnb.
+  - Regional option filtering: IKEA.
 examples:
   - Amazon
   - Spotify
   - DuckDuckGo / Duck.ai
   - Airbnb
+  - IKEA
 evidence:
   - ../observations/amazon/search-autocomplete.md
   - ../observations/spotify/search-results-as-you-type.md
   - ../observations/duckduckgo/search-query-action-list.md
   - ../observations/duckduckgo/search-to-ai-chat-handoff.md
   - ../observations/airbnb/location-autocomplete.md
+  - ../observations/ikea/store-search-filtering.md
 ```
 
 ## Cross-site invariant
 
-Across four sites, entering a query exposed relevant next steps before a conventional search submission. The responses differ: Amazon showed query completions, Spotify showed artist and track results, DuckDuckGo offered Search or a handoff to Duck.ai, and Airbnb returned matching destinations.
+Across five sites, entering a query exposed relevant next steps before a conventional search submission. The responses differ: Amazon showed query completions, Spotify showed artist and track results, DuckDuckGo offered Search or a handoff to Duck.ai, Airbnb returned matching destinations, and IKEA filtered the store/language options.
 
 ## Boundary cases
 

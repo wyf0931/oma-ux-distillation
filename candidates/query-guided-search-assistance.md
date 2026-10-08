@@ -1,6 +1,6 @@
 # Candidate: query-guided search assistance
 
-**Status:** promoted to [Query-Guided Search Assistance](../patterns/query-guided-search-assistance.md) after four independent examples; retain this file as the hypothesis and validation record.
+**Status:** promoted to [Query-Guided Search Assistance](../patterns/query-guided-search-assistance.md) after five independent examples; retain this file as the hypothesis and validation record.
 
 ## Hypothesis
 
@@ -13,6 +13,7 @@ Typing a query can update a discovery region before the user submits a search, o
 - [DuckDuckGo query action list](../observations/duckduckgo/search-query-action-list.md) — typing opens Search and Ask Duck.ai actions.
 - [DuckDuckGo search-to-AI handoff](../observations/duckduckgo/search-to-ai-chat-handoff.md) — choosing Ask Duck.ai carries the query into chat.
 - [Airbnb location autocomplete](../observations/airbnb/location-autocomplete.md) — a typed place name exposes matching destinations before search submission.
+- [IKEA store search](../observations/ikea/store-search-filtering.md) — a typed country name filters a short regional store/language list.
 
 ## Validation questions
 

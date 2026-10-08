@@ -33,7 +33,7 @@ Started 2026-10-08. Eight interactions have been captured from Apple, AMD, NVIDI
 
 ### Batch 2 — Porsche, Amazon, IKEA, Figma, Linear
 
-Completed 2026-10-08. Six interactions were captured. IKEA's store selector opened a searchable list of seven regional store/language options, and Next advanced the Designer stories carousel; the separate autoplay slideshow control still lacks a reliable state-change observation. Linear was opened in an isolated DevTools context; only the public product navigation was recorded. No account or workspace content was copied into the library. Nike and Porsche pause controls later supported the User-Controlled Automatic Motion pattern; remaining limits are listed in that pattern file.
+Completed 2026-10-08. Seven interactions were captured. IKEA's store selector opened a searchable list of seven regional store/language options; typing Malaysia filtered it to two IKEA.my language options; Next advanced the Designer stories carousel. The separate autoplay slideshow control still lacks a reliable state-change observation. Linear was opened in an isolated DevTools context; only the public product navigation was recorded. No account or workspace content was copied into the library. Nike and Porsche pause controls later supported the User-Controlled Automatic Motion pattern; remaining limits are listed in that pattern file.
 
 ### Batch 3 — Stripe, Notion, Mistral AI, Anthropic, DuckDuckGo / Duck.ai
 
@@ -45,4 +45,4 @@ Completed 2026-10-08. Nine interactions were captured: Vercel product menu expan
 
 ## Cross-site validation — initial pass
 
-Completed 2026-10-08 over the active 20-site corpus. The two blocked initial candidates were replaced under the corpus adjustment rule, and remain listed as deferred. The repository contains 29 individual interaction observations, five page maps, and four promoted patterns supported across two to eight independent sites. Their scope, variants, boundaries, and supporting observation links are documented in `patterns/`. This is an initial validation pass, not a complete UX grammar or token system.
+Completed 2026-10-08 over the active 20-site corpus. The two blocked initial candidates were replaced under the corpus adjustment rule, and remain listed as deferred. The repository contains 30 individual interaction observations, five page maps, and four promoted patterns supported across three to eight independent sites. Their scope, variants, boundaries, and supporting observation links are documented in `patterns/`. This is an initial validation pass, not a complete UX grammar or token system.
