@@ -1,7 +1,7 @@
 ---
 name: UX Distillation Spec
 version: 0.1.0
-status: draft
+status: stable
 record_formats:
   observation:
     required:
@@ -17,6 +17,20 @@ record_formats:
       - purpose
       - evidence
       - confidence
+    optional:
+      - boundaries
+      - counterexamples
+  page_map:
+    required:
+      - record_type
+      - site
+      - page
+      - visible_structure
+      - interaction_candidates
+      - limits
+      - evidence
+    optional:
+      - related_observations
   pattern:
     required:
       - record_type
@@ -35,6 +49,7 @@ record_formats:
       - evidence
       - confidence
     optional:
+      - boundaries
       - counterexamples
   principle:
     required:
@@ -57,9 +72,18 @@ pattern_statuses:
   - validated
   - rejected
 confidence_levels:
-  low: The claim has plausible alternatives or is only weakly connected to the observed state.
-  medium: The claim fits direct evidence, but reproduction or cross-site comparison is limited.
-  high: The claim is supported by reproducible evidence, independent examples, and an explicit boundary check.
+  observation:
+    low: The immediate user intent is unknown or several materially different intents are equally plausible.
+    medium: The action and context suggest an immediate intent, but plausible alternatives remain.
+    high: The action and context make the immediate user intent clear. The purpose field remains a hypothesis regardless of this rating.
+  pattern:
+    low: The proposed invariant has plausible alternatives or fits the observed interactions weakly.
+    medium: Direct observations support the invariant, but cross-site comparison or boundary checks are limited.
+    high: The invariant is directly supported across independent sites and a meaningful boundary has been checked.
+  principle:
+    low: The rationale is tentative or weakly connected to the supporting patterns.
+    medium: Multiple validated patterns support the rationale, but alternatives or boundaries remain plausible.
+    high: Multiple validated patterns support the rationale and explicit boundaries or counterexamples have been considered.
 ---
 
 # UX Distillation Spec
@@ -68,9 +92,22 @@ confidence_levels:
 
 The UX Distillation Spec defines how an agent turns website research into evidence that can be compared across products. It is the contract for the companion UX Extraction Skill and for the observation dataset in this repository.
 
-The format follows a useful separation from `DESIGN.md`: structured YAML carries fields that tools can read, while Markdown prose explains context, meaning, and limits. In UX records, the YAML is the normative evidence structure; prose must not claim more than the captured evidence supports.
+The supplied [`design.md` format specification](https://github.com/google-labs-code/design.md/blob/9bf8eae67128b6cc55ad9bf86665767deb4c11cd/docs/spec.md) defines DESIGN.md as plain text with optional YAML front matter and a Markdown body. UX-SPEC borrows the split between machine-readable fields and human-readable guidance, while keeping the evidence source of truth explicit: browser-reproduced action/response and provenance fields are facts; `intent`, `purpose`, `problem`, usage guidance, and principles are interpretations. An item marked `secondary` records what official documentation says, not a browser-verified interaction. Markdown prose explains interpretations and limits. YAML structure does not turn a hypothesis into a fact, and prose cannot strengthen a claim beyond the linked observations. UX-SPEC does not adopt DESIGN.md's visual-token vocabulary or section order; its record types and evidence layers determine the UX structure. Keep shared UX fields small, retaining site-specific details in notes or extensions until repeated research shows they improve comparison.
 
 The Spec does not prescribe what a product should look or behave like. It defines how to observe what a product does, how to distinguish observation from interpretation, and when a repeated mechanism can be called a pattern.
+
+## Scope
+
+Observe interactions that affect how visitors navigate, make choices, understand a state, recover, or continue a task. Relevant evidence includes:
+
+- Navigation and information architecture; page and state transitions.
+- Scrolling, hover, click, drag, swipe, and keyboard actions.
+- Search, filtering, sorting, comparison, product discovery, and content exploration.
+- Forms, progressive disclosure, onboarding, and calls to action.
+- Feedback, loading, empty states, errors, recovery, and confirmation.
+- Storytelling and motion when they affect navigation, comprehension, feedback, or user decisions.
+
+Do not treat color, typography, spacing, radius, shadow, CSS, framework, or pixel-level appearance as UX evidence. Visual design tokens remain separate; motion is in scope only when its effect on interaction or comprehension can be observed.
 
 ## The five evidence layers
 
@@ -93,6 +130,9 @@ Trigger → Action → Response → State
 ```
 
 Use the smallest concrete description that preserves what changed. Include unchanged state when relevant.
+For an observation, `trigger`, `action`, and `state` are strings describing one concrete interaction; `response` may be a string or a list when several visible responses need recording. Pattern records may summarize shared triggers and actions as lists because they aggregate multiple observations.
+
+For carousels, tabs, paginated groups, and other sequences, identify the active item or visible group before and after. A Previous / Next enabled-state change can corroborate progression, but does not by itself prove the displayed content changed.
 
 These four fields form the reusable `interaction` schema fragment. An observation embeds the fragment with site/page context and intent; the Skill may validate the fragment separately from the full observation record.
 
@@ -112,7 +152,7 @@ An agent must not jump from one observation to a principle.
 
 ## Observation record
 
-One observation file records one interaction. Its YAML front matter contains the required fields listed in the Spec metadata. The evidence field is a list so a record can retain multiple independently inspectable items. The Markdown body explains nuance and limitations without contradicting the structured fields.
+One observation file records one interaction. Its required YAML keys are the union of `record_formats.observation.required` and `interaction_schema.required` in the Spec metadata; this keeps the trigger/action/response/state fragment reusable while requiring all four fields on every observation. The evidence field is a list so a record can retain multiple independently inspectable capture or reproduction items. Keep each verification pass in its own item with its own before/after state; do not replace the original capture with a later repetition. The Markdown body explains nuance and limitations without contradicting the structured fields.
 
 ```markdown
 ---
@@ -131,7 +171,7 @@ purpose: hypothesis — allow product exploration without leaving the overview p
 evidence:
   - evidence_class: observed
     url: https://www.apple.com/iphone/
-    captured_at: 2026-10-08
+    captured_at: "2026-10-08"
     tool: Chrome DevTools MCP
     reproduction: Open the page and select the iPhone 18 Pro tab.
     before: iPhone Duo tab and panel are active.
@@ -154,23 +194,49 @@ Field meanings:
 - `state`: the before/after state transition in concise form.
 - `intent`: the likely immediate user goal; may be `unknown`.
 - `purpose`: a design-purpose hypothesis, never direct evidence.
-- `evidence`: source URL, reproduction, before/after facts, capture tool/date, and optional screenshot.
-- `confidence`: `low`, `medium`, or `high` using the rubric in the front matter. State uncertainty in prose as well when needed.
+- `evidence`: one capture or reproduction item per list entry, with its source URL, reproduction steps, before/after facts, and capture tool/date; page title, viewport, browser, section, and screenshot are optional. Use a separate item for each safe repeat so the original and repeated states remain inspectable. Store a screenshot beside its observation and reference it with an observation-relative path when possible; a repository-root-relative path is also valid.
+- `confidence`: `low`, `medium`, or `high` using the record-type-specific rubric in the front matter. For observations it applies only to inferred immediate intent, not to the certainty of captured facts or to the purpose hypothesis; use `low` when `intent` is `unknown`. For patterns and principles it describes cross-record fit and support.
+- `boundaries` and `counterexamples`: optional record-level annotations for an observed adjacent case or a direct contradiction to an identified candidate/pattern. They do not count as pattern support; pattern records remain the canonical place to classify linked observations.
 
-Field types:
+Observation field types:
 
 | Field | Type | Rule |
 |:--|:--|:--|
-| `record_type` | string | `observation`, `pattern`, or `principle` |
+| `record_type` | string enum | `observation`, `page_map`, `pattern`, or `principle`; pattern records also use the `status` field |
 | `site`, `page`, `context` | string | Use a stable site name and concise page/context labels |
 | `trigger`, `action`, `state`, `intent`, `purpose` | string | Use `unknown` when not known; mark purpose as a hypothesis |
 | `response` | string or string list | List separate visible responses when useful |
-| `evidence` | evidence object list | Each item should identify evidence class, URL/reference, and reproduction or source details |
+| `evidence` | record-specific list | Observation and page-map records use evidence objects; pattern and principle records use repository links |
 | `confidence` | enum | `low`, `medium`, or `high` |
+| `boundaries` | optional string list | Short notes about observed adjacent cases or non-instances; they do not count as pattern support |
+| `counterexamples` | optional string list | Short notes about an observed contradiction under the same trigger/context as an identified candidate or pattern |
+
+### YAML string quoting
+
+Quote a YAML string that contains a colon followed by a space, particularly a list item under `response`. An unquoted value such as `- The page title changes to Amazon.com: Wireless Headphones.` may parse as a mapping rather than a string and fail the observation schema. Write it as `- "The page title changes to ‘Amazon.com: Wireless Headphones’."`.
 
 Pattern and principle fields use strings for definitions and statements, lists for variants/examples/references, and the same confidence enum. A dedicated interaction schema is a reusable fragment of an observation record, not a separate evidence record.
 
-Use `evidence_class: observed` only when an action and response were inspected. Use `page-evidence` for static page maps and `secondary` for official documentation that describes behavior not reproduced in the browser.
+### Shared fields and extensions
+
+The schema files define the shared fields needed to compare evidence. Keep details that matter only to one site or one interaction in Markdown notes or an `extensions` object; do not turn every useful local detail into a required field. Preserve unknown YAML keys when reading records. Promote an extension into the shared schema only when multiple independent observations show that it improves comparison or extraction. This keeps the record format consistent without forcing unlike interactions into premature categories.
+
+Use `evidence_class: observed` only when an action and response were inspected. Use `secondary` for official documentation that describes behavior not reproduced in the browser; mark reproduction and before/after as not reproduced or not observed, and phrase `response` as the documentation's claim rather than a reproduced outcome. A secondary item establishes that the source describes a behavior, not that the website currently exhibits it; it cannot count as a directly observed pattern instance. Static page maps are page evidence stored in `corpus/`, not interaction observations, and do not use the observation evidence schema.
+
+## Page-map record
+
+A page map captures static page evidence when a page or control is visible but no interaction response has been tested. It helps choose the next safe action; it cannot support a pattern or be described as an observed interaction. Save one page map per page under `corpus/<corpus-slug>/`, using `corpus/_page-map-template.v1.md` and `ux-extractor/schemas/page-map.yaml`. The path uses the corpus directory slug; the frontmatter `site` value must exactly match `corpus/<corpus-slug>/site.md`.
+
+Its YAML front matter records:
+
+- `site` and `page`: the product and page label.
+- `visible_structure`: directly visible regions and controls.
+- `interaction_candidates`: controls or paths worth testing later, stated as questions or possible actions rather than observed responses.
+- `limits`: what was not tested or could not be established.
+- `evidence`: URL, capture date, tool, and available title, viewport, and browser details. Each item uses `evidence_class: page-evidence`.
+- `related_observations`: optional links to interaction observations from the same page.
+
+Keep the page map factual. If an action is later tested, save a separate interaction observation and link it; do not rewrite the map as interaction evidence.
 
 ## Pattern record
 
@@ -210,6 +276,9 @@ evidence:
   - ../observations/notion/product-navigation-menu.md
   - ../observations/anthropic/research-navigation-menu.md
   - ../observations/vercel/products-menu.md
+boundaries:
+  - ../observations/vercel/pricing-direct-link.md
+counterexamples: []
 confidence: high
 ---
 
@@ -223,6 +292,16 @@ Direct links navigate to one destination and do not instantiate this pattern.
 ```
 
 Use `status: candidate` for a hypothesis that still needs independent examples or counterexample search; use `status: validated` only after it meets the promotion criteria below. Keep rejected hypotheses with `status: rejected` only when their history is useful.
+
+Pattern front matter keeps three evidence roles separate:
+
+- `evidence` contains only observations that instantiate the pattern and count toward the independent-site threshold.
+- `boundaries` link non-instances or adjacent cases that clarify where the pattern does and does not apply. They do not count as support and do not by themselves disprove the pattern.
+- `counterexamples` link cases that match the pattern's stated trigger and context but contradict its proposed invariant. Use this field only when the case could falsify the definition.
+
+`problem`, `use_when`, and `avoid_when` are interpretation fields by schema definition: they express hypotheses inferred from the interaction examples, not direct observations or user-research findings. Keep the claims proportionate to the evidence and never present them as user-research results unless separate research is linked. Pattern `confidence` describes fit of the shared interaction invariant; it does not validate every usage recommendation.
+
+Candidate files in `candidates/` use the same `pattern.yaml` schema with `status: candidate`. When a candidate is promoted, write the validated record in `patterns/` and keep the candidate file as a traceable decision record; update its structured status to `validated`. A rejected candidate may remain with `status: rejected` when its evidence is useful to future comparisons.
 
 The Markdown body should state:
 
@@ -242,11 +321,11 @@ name: Preserve agency in content progression
 statement: Visitors should retain a way to control the progression of featured content.
 rationale: Manual selection and pause controls both let people set the pace of content exploration.
 supported_by_patterns:
-  - selectable-featured-content
-  - user-controlled-automatic-motion
+  - patterns/selectable-featured-content.md
+  - patterns/user-controlled-automatic-motion.md
 evidence:
-  - ../patterns/selectable-featured-content.md
-  - ../patterns/user-controlled-automatic-motion.md
+  - patterns/selectable-featured-content.md
+  - patterns/user-controlled-automatic-motion.md
 counterexamples: []
 confidence: medium
 ---
@@ -257,11 +336,30 @@ This claim is a hypothesis supported by the referenced pattern; it is not an obs
 ```
 
 Do not create principle records just to fill a layer. A principle remains a hypothesis until examples and counterexamples have been compared.
+Use repository-root-relative paths in principle records' `supported_by_patterns` and `evidence` fields so tools can resolve the validated pattern records regardless of where the principle document is stored.
+
+Store principle records in `taxonomy/principles/<slug>.md` using `taxonomy/_principle-template.v1.md`. Require at least two validated supporting patterns, preferably three or more. State the shared rationale and alternative explanations, link patterns that challenge the scope, and keep confidence proportionate to the evidence. Interface observations alone do not establish user outcomes or causal benefit. Do not add higher-level taxonomy groups until multiple principles reveal a useful cluster.
+
+## Pattern quality
+
+A pattern proposed for promotion must meet these criteria:
+
+- **Reusable:** the same interaction invariant is directly supported by multiple independent product sites.
+- **Observable:** every supporting example records a concrete trigger, user action, system response, and resulting state.
+- **Semantic:** the definition describes the interaction logic, not a brand-specific component or visual treatment.
+- **Minimal:** the definition states the smallest behavior shared by the examples; real implementation differences stay in `variants`.
+- **Falsifiable:** the definition makes clear what behavior would contradict it, and the record includes at least one boundary or counterexample search.
+
+If a criterion cannot be checked from the available evidence, keep the record as a candidate or state the unresolved limit. Do not use opinions such as “smooth,” “modern,” or “user-friendly” as pattern definitions.
 
 ## Promotion and falsifiability
 
 - A candidate needs evidence from at least two independent sites before promotion; three or more is preferred.
+- Count independence by distinct product/site identities in `corpus/`, not by pages, paths, locales, or subdomains; those are one site when they belong to the same product. Separate products may count separately when they have distinct product experiences and separate corpus records. If independence is uncertain, count the examples as one site and record the reason for any exception.
 - Similar-looking controls do not establish the same pattern. Compare trigger, action, response, and state.
+- Only directly observed interaction records that instantiate the candidate count toward the independent-site threshold. In version 0.1.0 records, the supporting item in `evidence` must use `evidence_class: observed`. In historical records, the front matter may place `evidence_class: observed` at the top level and store interaction details in Markdown; count such a record only when its `Interaction` and `Evidence` sections identify the user action, observed result, source URL, and reproduction or capture method. This is an evidence review rule, not permission to rewrite the historical record. `secondary` documentation and page maps never count as observed instances.
+- Non-instances belong in `boundaries`; blocked behavior and unverified states belong in `limits`. None count as support.
+- Use `counterexamples` only for cases that match the trigger/context but contradict the proposed invariant; a different interaction or a missing state is not automatically a counterexample.
 - Record at least one boundary condition or counterexample search in every pattern file.
 - Keep website-specific behavior in variants when the shared mechanism still holds.
 - If the evidence does not fit one minimal invariant, split or reject the candidate.
@@ -273,7 +371,7 @@ This version standardizes observations, interactions, patterns, and principles. 
 
 ## Compatibility with the current dataset
 
-The first research batches used an earlier Markdown template with metadata front matter, fenced YAML interaction blocks, and separate Evidence sections. Existing observations and pattern records remain valid historical evidence in that format. New records and future migrations should conform to this Spec after review; do not rewrite observations in a way that loses original wording, URLs, or capture limits.
+The first research batches used an earlier Markdown template with metadata front matter, fenced YAML interaction blocks, and separate Evidence sections. Existing observations, page maps, and pattern records remain valid historical evidence in their original formats. Historical-format interaction records may support a pattern only when `evidence_class: observed` and the documented action, result, URL, and capture or reproduction method establish a directly observed interaction. Treat incomplete historical entries as unverified and do not count them. New observations and page maps use the version 0.1.0 templates and schemas. Keep historical records unchanged unless a migration is deliberately planned; do not lose original wording, URLs, or capture limits.
 
 ## Companion Skill package
 
@@ -284,9 +382,12 @@ ux-extractor/
 ├── SKILL.md
 └── schemas/
     ├── observation.yaml
+    ├── page-map.yaml
     ├── interaction.yaml
     ├── pattern.yaml
     └── principle.yaml
 ```
 
 The Skill teaches the observation workflow. It may not redefine the schemas or promote a pattern contrary to this Spec.
+
+The companion Skill also uses `ux-extractor/schemas/site.yaml` to validate corpus target metadata. That schema is repository planning metadata, not one of the UX evidence record formats defined by this Spec.

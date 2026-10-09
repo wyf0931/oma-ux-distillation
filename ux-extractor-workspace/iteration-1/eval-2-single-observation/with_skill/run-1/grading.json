@@ -1,0 +1,45 @@
+{
+  "expectations": [
+    {
+      "text": "Observation site equals the canonical corpus value IKEA; locale is recorded under page/context.",
+      "passed": true,
+      "evidence": "The record uses `site: IKEA` and page `IKEA US Sofas & sectionals category listing`."
+    },
+    {
+      "text": "Trigger, action, response, and state describe exactly one Red filter selection and its observed before/after state.",
+      "passed": true,
+      "evidence": "The record describes one click on enabled Color `red (1)`; result count changed 33 to 1, button became pressed, and state records the price+Red filter."
+    },
+    {
+      "text": "Evidence is observed and identifies the exact URL, date, tool, reproduction, before, and after.",
+      "passed": true,
+      "evidence": "The evidence item has evidence_class observed and all requested provenance fields; its after URL retains price and adds the Red filter."
+    },
+    {
+      "text": "No unsupported claims are made about product details, other controls, or unobserved effects.",
+      "passed": true,
+      "evidence": "Notes say no product was opened and no other control was tested; no repeat or downstream behavior is claimed."
+    },
+    {
+      "text": "No observation, candidate, pattern, or corpus record is changed.",
+      "passed": true,
+      "evidence": "The executor saved only to the evaluation workspace and reports no formal corpus edits."
+    }
+  ],
+  "summary": {
+    "passed": 5,
+    "failed": 0,
+    "total": 5,
+    "pass_rate": 1.0
+  },
+  "claims": [],
+  "user_notes_summary": {
+    "uncertainties": [],
+    "needs_review": [],
+    "workarounds": []
+  },
+  "eval_feedback": {
+    "suggestions": [],
+    "overall": "Assertions are evidence-based; page-map and candidate tasks differentiate evidence constraints, while the interaction baseline remains blocked by browser setup."
+  }
+}

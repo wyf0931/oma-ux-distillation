@@ -1,0 +1,43 @@
+$schema: https://json-schema.org/draft/2020-12/schema
+title: UX Principle
+description: A higher-level rationale supported by multiple validated patterns.
+type: object
+required:
+  - record_type
+  - name
+  - statement
+  - rationale
+  - supported_by_patterns
+  - evidence
+  - counterexamples
+  - confidence
+properties:
+  record_type:
+    const: principle
+  name:
+    type: string
+    description: Concise name for a principle inferred from multiple validated patterns.
+  statement:
+    type: string
+    description: A broader design claim inferred from multiple validated patterns, not a direct observation about a site.
+  rationale:
+    type: string
+    description: Interpretive explanation linking the statement to supporting patterns; keep alternative explanations visible.
+  supported_by_patterns:
+    type: array
+    minItems: 2
+    description: Repository-root-relative paths to at least two validated pattern records supporting the principle rationale.
+    items: { type: string }
+  evidence:
+    type: array
+    minItems: 1
+    description: Repository-root-relative paths to the supporting validated patterns or other source evidence.
+    items: { type: string }
+  counterexamples:
+    type: array
+    description: Links to cases that challenge the principle across its supporting patterns.
+    items: { type: string }
+  confidence:
+    enum: [low, medium, high]
+    description: Confidence in the rationale supported by multiple patterns, not proof of a causal effect on users.
+additionalProperties: true

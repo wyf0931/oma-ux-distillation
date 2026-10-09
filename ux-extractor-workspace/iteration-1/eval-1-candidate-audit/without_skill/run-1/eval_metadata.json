@@ -1,0 +1,27 @@
+{
+  "eval_id": 1,
+  "eval_name": "candidate-support-audit",
+  "prompt": "审查候选“Zero-Count Facet Options Are Disabled”。读取它引用的观察和相关跨站模式，按独立站点分别列出直接支持、边界、反例，并判断是否达到晋升为 validated 的条件。只把分析报告保存到本次运行指定的 outputs 目录，不要改动正式语料，也不要把边界证据计作支持。",
+  "assertions": [
+    {
+      "name": "candidate-not-promoted",
+      "description": "Concludes status remains candidate because only one independent site directly demonstrates zero-count disabling."
+    },
+    {
+      "name": "support-boundary-separation",
+      "description": "Counts IKEA as the sole supporting site and keeps eBay, Amazon, and Airbnb as boundaries/adjacent evidence."
+    },
+    {
+      "name": "counterexample-classification",
+      "description": "Does not treat adjacent cases or missing zero-count states as direct counterexamples."
+    },
+    {
+      "name": "evidence-links",
+      "description": "Cites the candidate and supporting/boundary observation paths."
+    },
+    {
+      "name": "no-corpus-mutation",
+      "description": "No formal candidate, pattern, or observation files are changed."
+    }
+  ]
+}

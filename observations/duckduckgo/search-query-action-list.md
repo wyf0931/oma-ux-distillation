@@ -1,5 +1,5 @@
 ---
-site: DuckDuckGo
+site: DuckDuckGo / Duck.ai
 page: Homepage search field
 observed_at: 2026-10-08
 viewport: 1512x727 CSS pixels

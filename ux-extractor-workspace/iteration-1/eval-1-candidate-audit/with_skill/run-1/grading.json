@@ -1,0 +1,45 @@
+{
+  "expectations": [
+    {
+      "text": "Concludes status remains candidate because only one independent site directly demonstrates zero-count disabling.",
+      "passed": true,
+      "evidence": "Both reports keep the candidate unvalidated and identify IKEA as the sole directly supporting site."
+    },
+    {
+      "text": "Counts IKEA as the sole supporting site and keeps eBay, Amazon, and Airbnb as boundaries/adjacent evidence.",
+      "passed": true,
+      "evidence": "Both tables classify IKEA as support and eBay/Amazon/Airbnb as boundary or adjacent cases."
+    },
+    {
+      "text": "Does not treat adjacent cases or missing zero-count states as direct counterexamples.",
+      "passed": true,
+      "evidence": "Both reports state there are no direct counterexamples and explain that zero-count handling was not observed on the other sites."
+    },
+    {
+      "text": "Cites the candidate and supporting/boundary observation paths.",
+      "passed": true,
+      "evidence": "Both reports link the IKEA, eBay, Amazon, and Airbnb observations and the related validated patterns."
+    },
+    {
+      "text": "No formal candidate, pattern, or observation files are changed.",
+      "passed": true,
+      "evidence": "Both executors confirm they saved only an analysis report to the evaluation workspace."
+    }
+  ],
+  "summary": {
+    "passed": 5,
+    "failed": 0,
+    "total": 5,
+    "pass_rate": 1.0
+  },
+  "claims": [],
+  "user_notes_summary": {
+    "uncertainties": [],
+    "needs_review": [],
+    "workarounds": []
+  },
+  "eval_feedback": {
+    "suggestions": [],
+    "overall": "Assertions are evidence-based; page-map and candidate tasks differentiate evidence constraints, while the interaction baseline remains blocked by browser setup."
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "eval_id": 2,
+  "eval_name": "single-observation-evidence-chain",
+  "prompt": "在 IKEA US 的公开沙发筛选页检查一次单独交互：如果初始页面存在可用的 Color → Red (1) 筛选项，就只选择一次它，记录动作前后结果数、筛选状态和可见响应。不要打开商品，不要测试其他控件，也不要改正式语料。若初始状态与描述不同或无法确认动作成功，就只记录实际观察到的结果和限制，不要推断。页面 URL：https://www.ikea.com/us/en/cat/sofas-sectionals-fu003/?filters=f-price-buckets%3APRICE_0_50000。将一条 UX-SPEC observation 及简短 Notes 保存到本次运行输出目录。",
+  "assertions": [
+    {
+      "name": "canonical-site-identity",
+      "description": "Observation `site` equals the corpus value `IKEA`; locale is recorded under page/context instead."
+    },
+    {
+      "name": "single-action-chain",
+      "description": "Trigger, action, response, and state describe exactly the one Red filter selection and its observed before/after state."
+    },
+    {
+      "name": "observed-provenance",
+      "description": "Evidence is `observed` and identifies the exact URL, date, tool, reproduction, before, and after."
+    },
+    {
+      "name": "no-inferred-response",
+      "description": "No unsupported claims are made about product details, other controls, or unobserved effects."
+    },
+    {
+      "name": "no-formal-mutation",
+      "description": "No observation, candidate, pattern, or corpus record is changed."
+    }
+  ]
+}

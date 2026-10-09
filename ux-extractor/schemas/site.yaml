@@ -1,0 +1,36 @@
+$schema: https://json-schema.org/draft/2020-12/schema
+title: UX Corpus Site Target
+description: Target-site metadata used to plan and organize research; this is not interaction evidence.
+type: object
+required:
+  - site
+  - url
+  - observed_page
+  - page_title
+  - batch
+properties:
+  site:
+    type: string
+    minLength: 1
+    description: Stable product identity used by observations and pattern support counts.
+  url:
+    type: string
+    format: uri
+    description: Canonical public site URL in the corpus catalog.
+  observed_page:
+    type: string
+    format: uri
+    description: Public page inspected for the target-site record; this does not claim an interaction was tested.
+  page_title:
+    type: string
+    description: Page title captured from the initial browser snapshot, or unknown.
+  batch:
+    type: integer
+    minimum: 1
+    description: Research batch that introduced the site to the active corpus.
+  replaces:
+    description: Previous candidate being replaced, with the reason; null or omitted when not replacing a candidate.
+    oneOf:
+      - type: string
+      - type: "null"
+additionalProperties: true

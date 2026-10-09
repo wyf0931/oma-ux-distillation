@@ -1,0 +1,95 @@
+$schema: https://json-schema.org/draft/2020-12/schema
+title: UX Pattern or Candidate
+description: A pattern hypothesis or validated cross-site interaction invariant.
+type: object
+required:
+  - record_type
+  - status
+  - name
+  - definition
+  - problem
+  - mechanism
+  - trigger
+  - action
+  - response
+  - use_when
+  - avoid_when
+  - variants
+  - examples
+  - evidence
+  - confidence
+properties:
+  record_type:
+    const: pattern
+  status:
+    enum: [candidate, validated, rejected]
+    description: Candidate is unvalidated; validated meets the cross-site threshold; rejected records an unsupported or falsified hypothesis.
+  name:
+    type: string
+    description: Concise reusable interaction mechanism, not a site-specific visual implementation.
+  definition:
+    type: string
+    description: Smallest falsifiable invariant supported by the linked observations.
+  problem:
+    description: Hypothesized user problem inferred from observed examples; not a user-research finding unless supported by separate research evidence.
+    oneOf:
+      - type: string
+      - type: array
+        items: { type: string }
+  mechanism:
+    description: How the user action changes the interface or available options.
+    oneOf:
+      - type: string
+      - type: array
+        items: { type: string }
+  trigger:
+    description: Observable condition that makes the interaction available or starts it.
+    oneOf:
+      - type: string
+      - type: array
+        items: { type: string }
+  action:
+    description: Concrete action taken by the user across supporting examples.
+    oneOf:
+      - type: string
+      - type: array
+        items: { type: string }
+  response:
+    description: Observable system response shared by the supporting examples.
+    oneOf:
+      - type: string
+      - type: array
+        items: { type: string }
+  use_when:
+    description: Inferred contexts where the mechanism may help; pattern confidence does not independently validate these recommendations.
+    type: array
+    items: { type: string }
+  avoid_when:
+    description: Inferred boundary conditions where the mechanism may not fit; keep these claims tied to observed examples.
+    type: array
+    items: { type: string }
+  variants:
+    type: array
+    description: Observed implementation differences that preserve the shared invariant.
+    items: { type: string }
+  examples:
+    type: array
+    description: Site names represented by the supporting evidence links.
+    items: { type: string }
+  evidence:
+    type: array
+    minItems: 1
+    description: Links to direct observed instances; only these count toward independent-site validation.
+    items: { type: string }
+  confidence:
+    enum: [low, medium, high]
+    description: Confidence in cross-site fit of the shared interaction invariant, not in every problem or usage recommendation.
+  boundaries:
+    type: array
+    description: Links to non-instances or adjacent cases that clarify scope; these do not count as support.
+    items: { type: string }
+  counterexamples:
+    type: array
+    description: Links to cases matching the trigger and context but contradicting the stated invariant.
+    items: { type: string }
+additionalProperties: true

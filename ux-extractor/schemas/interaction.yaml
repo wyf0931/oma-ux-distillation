@@ -1,0 +1,26 @@
+$schema: https://json-schema.org/draft/2020-12/schema
+title: UX Interaction Fragment
+description: One trigger/action/response/state fragment embedded in an observation.
+type: object
+required:
+  - trigger
+  - action
+  - response
+  - state
+properties:
+  trigger:
+    description: Condition that makes the user action available or starts the interaction.
+    type: string
+  action:
+    description: Concrete action performed by the user; do not substitute an inferred goal.
+    type: string
+  response:
+    description: Observable system behavior after the action, including feedback or no visible change when verified.
+    oneOf:
+      - type: string
+      - type: array
+        items: { type: string }
+  state:
+    type: string
+    description: Concise before-and-after state transition, including relevant state that stayed unchanged.
+additionalProperties: true

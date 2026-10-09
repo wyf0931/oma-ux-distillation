@@ -1,0 +1,49 @@
+{
+  "skill_name": "ux-extractor",
+  "evals": [
+    {
+      "id": 0,
+      "prompt": "帮我先盘点美国 IKEA 沙发列表页的页面结构和可继续测试的交互点。不要点击、输入、展开、滚动或提交任何控件；只用页面刚加载后的可访问性快照。输出一份 page map，保存到本次运行指定的 outputs 目录，不要改动正式语料。URL：https://www.ikea.com/us/en/cat/sofas-sectionals-fu003/?filters=f-price-buckets%3APRICE_0_50000",
+      "expected_output": "One page-map record with page-evidence provenance and limits; visible controls are listed as candidates, no interaction response is claimed, and no repository files are changed.",
+      "files": [],
+      "eval_name": "page-map-without-interaction",
+      "expectations": [
+        "Output contains exactly one record_type: page_map and evidence_class: page-evidence.",
+        "Does not claim a visible response for a control that was not operated; visible controls are listed as interaction candidates.",
+        "Records the requested public URL and states that no interaction was tested in limits.",
+        "No formal corpus or pattern files are changed.",
+        "The page-map `site` string exactly matches the canonical site name in corpus/ikea/site.md (`IKEA`); locale remains in page/context.",
+        "When browser capture succeeds, visible_structure and interaction_candidates contain concrete snapshot-based content rather than empty placeholders.",
+        "When the preferred browser surface fails and another supported surface is available, the run tries the fallback and records the actual tool and any isolation limitation."
+      ]
+    },
+    {
+      "id": 1,
+      "prompt": "审查候选“Zero-Count Facet Options Are Disabled”。读取它引用的观察和相关跨站模式，按独立站点分别列出直接支持、边界、反例，并判断是否达到晋升为 validated 的条件。只把分析报告保存到本次运行指定的 outputs 目录，不要改动正式语料，也不要把边界证据计作支持。",
+      "expected_output": "The candidate remains unvalidated because only IKEA directly observes disabled zero-count options; eBay, Amazon, and Airbnb are boundaries or adjacent evidence, not support or direct counterexamples. The report links its classification to the cited observation files and does not modify the repository.",
+      "files": [],
+      "eval_name": "candidate-support-audit",
+      "expectations": [
+        "Concludes status remains candidate because only one independent site directly demonstrates zero-count disabling.",
+        "Counts IKEA as the sole supporting site and keeps eBay, Amazon, and Airbnb as boundaries/adjacent evidence.",
+        "Does not treat adjacent cases or missing zero-count states as direct counterexamples.",
+        "Cites the candidate and supporting/boundary observation paths.",
+        "No formal candidate, pattern, or observation files are changed."
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "在 IKEA US 的公开沙发筛选页检查一次单独交互：如果初始页面存在可用的 Color → Red (1) 筛选项，就只选择一次它，记录动作前后结果数、筛选状态和可见响应。不要打开商品，不要测试其他控件，也不要改正式语料。若初始状态与描述不同或无法确认动作成功，就只记录实际观察到的结果和限制，不要推断。页面 URL：https://www.ikea.com/us/en/cat/sofas-sectionals-fu003/?filters=f-price-buckets%3APRICE_0_50000。将一条 UX-SPEC observation 及简短 Notes 保存到本次运行输出目录。",
+      "expected_output": "One observation record with canonical site name IKEA; one concrete action; directly observed before/after response and state; observed evidence with URL, date, tool, and reproduction; no interaction claims beyond the one selected facet; no formal corpus edits.",
+      "files": [],
+      "eval_name": "single-observation-evidence-chain",
+      "expectations": [
+        "Observation `site` equals the corpus value `IKEA`; locale is recorded under page/context instead.",
+        "Trigger, action, response, and state describe exactly the one Red filter selection and its observed before/after state.",
+        "Evidence is `observed` and identifies the exact URL, date, tool, reproduction, before, and after.",
+        "No unsupported claims are made about product details, other controls, or unobserved effects.",
+        "No observation, candidate, pattern, or corpus record is changed."
+      ]
+    }
+  ]
+}

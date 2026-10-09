@@ -34,4 +34,4 @@ purpose_hypothesis: keep supporting detail available without navigating away fro
 - Reproduction: open the URL in an isolated context; open `Netflix 如何收费？`.
 - Result: the snapshot showed the question expanded and an answer stating that a fixed monthly fee applies, with plans from $15.98 to $29.98.
 - Screenshot: not captured.
-- Notes / limits: only one FAQ item was opened; closing and opening multiple answers were not tested.
+- Notes / limits: this capture tested only one FAQ item. A follow-up observation tested opening a second question and found that the previously open answer closed ([single-open behavior](faq-single-open.md)).

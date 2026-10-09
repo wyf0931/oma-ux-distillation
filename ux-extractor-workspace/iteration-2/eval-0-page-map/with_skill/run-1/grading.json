@@ -1,0 +1,57 @@
+{
+  "expectations": [
+    {
+      "text": "Output contains exactly one record_type: page_map and evidence_class: page-evidence.",
+      "passed": true,
+      "evidence": "The output has a page_map frontmatter record and a page-evidence item."
+    },
+    {
+      "text": "Does not claim a visible response for a control that was not operated; visible controls are listed as interaction candidates.",
+      "passed": true,
+      "evidence": "All interaction_candidates are untested questions and the notes say no response was tested."
+    },
+    {
+      "text": "Records the requested public URL and states that no interaction was tested in limits.",
+      "passed": true,
+      "evidence": "The evidence URL is exact; limits state that only the initial snapshot was captured."
+    },
+    {
+      "text": "No formal corpus or pattern files are changed.",
+      "passed": true,
+      "evidence": "The run produced only the requested evaluation output."
+    },
+    {
+      "text": "The page-map site string exactly matches the canonical corpus site IKEA; locale remains in page/context.",
+      "passed": true,
+      "evidence": "The output now uses `site: IKEA`; page identifies the US sofas listing."
+    },
+    {
+      "text": "When browser capture succeeds, visible_structure and interaction_candidates contain concrete snapshot-based content rather than empty placeholders.",
+      "passed": true,
+      "evidence": "The output lists visible page sections and controls plus seven interaction questions."
+    },
+    {
+      "text": "When the preferred browser surface fails and another supported surface is available, the run tries the fallback and records the actual tool and any isolation limitation.",
+      "passed": true,
+      "evidence": "The output documents the failed isolated context, the new-tab fallback, logged-out header evidence, and the exact Chrome DevTools MCP capture tool."
+    }
+  ],
+  "summary": {
+    "passed": 7,
+    "failed": 0,
+    "total": 7,
+    "pass_rate": 1.0
+  },
+  "claims": [],
+  "user_notes_summary": {
+    "uncertainties": [
+      "Capture used a fresh tab in the DevTools research profile because an isolated context was unavailable; header showed logged-out state."
+    ],
+    "needs_review": [],
+    "workarounds": []
+  },
+  "eval_feedback": {
+    "suggestions": [],
+    "overall": "Assertions are evidence-based; page-map and candidate tasks differentiate evidence constraints, while the interaction baseline remains blocked by browser setup."
+  }
+}

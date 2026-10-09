@@ -1,0 +1,269 @@
+{
+  "metadata": {
+    "skill_name": "ux-extractor",
+    "skill_path": "ux-extractor/SKILL.md",
+    "timestamp": "2026-10-09T03:22:47Z",
+    "evals_run": [
+      0,
+      1,
+      2
+    ],
+    "runs_per_configuration": 1
+  },
+  "runs": [
+    {
+      "eval_id": 0,
+      "eval_name": "page-map-without-interaction",
+      "configuration": "with_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 0.8571,
+        "passed": 6,
+        "failed": 1,
+        "total": 7
+      },
+      "expectations": [
+        {
+          "text": "Output contains exactly one record_type: page_map and evidence_class: page-evidence.",
+          "passed": true,
+          "evidence": "The frontmatter begins with record_type: page_map and its evidence item is page-evidence."
+        },
+        {
+          "text": "Does not claim a visible response for a control that was not operated; visible controls are listed as interaction candidates.",
+          "passed": true,
+          "evidence": "No control was operated; listed interactions are phrased as questions and the Notes state that no control was tested."
+        },
+        {
+          "text": "Records the requested public URL and states that no interaction was tested in limits.",
+          "passed": true,
+          "evidence": "The evidence URL matches the prompt; limits state that only the initial accessibility snapshot was used."
+        },
+        {
+          "text": "No formal corpus or pattern files are changed.",
+          "passed": true,
+          "evidence": "The run report says no corpus files were edited; this artifact is saved only in the evaluation workspace."
+        },
+        {
+          "text": "The page-map site string exactly matches the canonical corpus site IKEA; locale remains in page/context.",
+          "passed": false,
+          "evidence": "The output uses `site: IKEA US`, while `corpus/ikea/site.md` uses `site: IKEA`."
+        },
+        {
+          "text": "When browser capture succeeds, visible_structure and interaction_candidates contain concrete snapshot-based content rather than empty placeholders.",
+          "passed": true,
+          "evidence": "The output lists nine observed page regions and eight untested interaction candidates."
+        },
+        {
+          "text": "When the preferred browser surface fails and another supported surface is available, the run tries the fallback and records the actual tool and any isolation limitation.",
+          "passed": true,
+          "evidence": "The executor reports Chrome DevTools MCP was unavailable and then captured the page with an isolated Playwright CLI session; the evidence names that tool."
+        }
+      ],
+      "notes": [
+        "Initial output captured via isolated Playwright after Chrome DevTools MCP was unavailable."
+      ]
+    },
+    {
+      "eval_id": 0,
+      "eval_name": "page-map-without-interaction",
+      "configuration": "without_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 0.5714,
+        "passed": 4,
+        "failed": 3,
+        "total": 7
+      },
+      "expectations": [
+        {
+          "text": "Output contains exactly one record_type: page_map and evidence_class: page-evidence.",
+          "passed": true,
+          "evidence": "The blocked note still uses record_type: page_map and page-evidence to mark static capture limits."
+        },
+        {
+          "text": "Does not claim a visible response for a control that was not operated; visible controls are listed as interaction candidates.",
+          "passed": true,
+          "evidence": "The record states no structure or behavior was inspected and makes no behavior claims."
+        },
+        {
+          "text": "Records the requested public URL and states that no interaction was tested in limits.",
+          "passed": true,
+          "evidence": "The exact URL is present and limits explicitly state page structure was not inspected."
+        },
+        {
+          "text": "No formal corpus or pattern files are changed.",
+          "passed": true,
+          "evidence": "The executor reports no formal repository files were changed."
+        },
+        {
+          "text": "The page-map site string exactly matches the canonical corpus site IKEA; locale remains in page/context.",
+          "passed": false,
+          "evidence": "The blocked artifact uses `site: IKEA US`, not the canonical `IKEA` value."
+        },
+        {
+          "text": "When browser capture succeeds, visible_structure and interaction_candidates contain concrete snapshot-based content rather than empty placeholders.",
+          "passed": false,
+          "evidence": "Both arrays are empty despite an available Playwright fallback used in the paired Skill run."
+        },
+        {
+          "text": "When the preferred browser surface fails and another supported surface is available, the run tries the fallback and records the actual tool and any isolation limitation.",
+          "passed": false,
+          "evidence": "The baseline stopped after Chrome DevTools MCP failed and did not try Playwright."
+        }
+      ],
+      "notes": [
+        "No page structure was captured; the run stopped after the first MCP profile error and did not try the available Playwright fallback."
+      ]
+    },
+    {
+      "eval_id": 1,
+      "eval_name": "candidate-support-audit",
+      "configuration": "with_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 1.0,
+        "passed": 5,
+        "failed": 0,
+        "total": 5
+      },
+      "expectations": [
+        {
+          "text": "Concludes status remains candidate because only one independent site directly demonstrates zero-count disabling.",
+          "passed": true,
+          "evidence": "Both reports keep the candidate unvalidated and identify IKEA as the sole directly supporting site."
+        },
+        {
+          "text": "Counts IKEA as the sole supporting site and keeps eBay, Amazon, and Airbnb as boundaries/adjacent evidence.",
+          "passed": true,
+          "evidence": "Both tables classify IKEA as support and eBay/Amazon/Airbnb as boundary or adjacent cases."
+        },
+        {
+          "text": "Does not treat adjacent cases or missing zero-count states as direct counterexamples.",
+          "passed": true,
+          "evidence": "Both reports state there are no direct counterexamples and explain that zero-count handling was not observed on the other sites."
+        },
+        {
+          "text": "Cites the candidate and supporting/boundary observation paths.",
+          "passed": true,
+          "evidence": "Both reports link the IKEA, eBay, Amazon, and Airbnb observations and the related validated patterns."
+        },
+        {
+          "text": "No formal candidate, pattern, or observation files are changed.",
+          "passed": true,
+          "evidence": "Both executors confirm they saved only an analysis report to the evaluation workspace."
+        }
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 1,
+      "eval_name": "candidate-support-audit",
+      "configuration": "without_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 1.0,
+        "passed": 5,
+        "failed": 0,
+        "total": 5
+      },
+      "expectations": [
+        {
+          "text": "Concludes status remains candidate because only one independent site directly demonstrates zero-count disabling.",
+          "passed": true,
+          "evidence": "Both reports keep the candidate unvalidated and identify IKEA as the sole directly supporting site."
+        },
+        {
+          "text": "Counts IKEA as the sole supporting site and keeps eBay, Amazon, and Airbnb as boundaries/adjacent evidence.",
+          "passed": true,
+          "evidence": "Both tables classify IKEA as support and eBay/Amazon/Airbnb as boundary or adjacent cases."
+        },
+        {
+          "text": "Does not treat adjacent cases or missing zero-count states as direct counterexamples.",
+          "passed": true,
+          "evidence": "Both reports state there are no direct counterexamples and explain that zero-count handling was not observed on the other sites."
+        },
+        {
+          "text": "Cites the candidate and supporting/boundary observation paths.",
+          "passed": true,
+          "evidence": "Both reports link the IKEA, eBay, Amazon, and Airbnb observations and the related validated patterns."
+        },
+        {
+          "text": "No formal candidate, pattern, or observation files are changed.",
+          "passed": true,
+          "evidence": "Both executors confirm they saved only an analysis report to the evaluation workspace."
+        }
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 2,
+      "eval_name": "single-observation-evidence-chain",
+      "configuration": "with_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 1.0,
+        "passed": 5,
+        "failed": 0,
+        "total": 5
+      },
+      "expectations": [
+        {
+          "text": "Observation site equals the canonical corpus value IKEA; locale is recorded under page/context.",
+          "passed": true,
+          "evidence": "The record uses `site: IKEA` and page `IKEA US Sofas & sectionals category listing`."
+        },
+        {
+          "text": "Trigger, action, response, and state describe exactly one Red filter selection and its observed before/after state.",
+          "passed": true,
+          "evidence": "The record describes one click on enabled Color `red (1)`; result count changed 33 to 1, button became pressed, and state records the price+Red filter."
+        },
+        {
+          "text": "Evidence is observed and identifies the exact URL, date, tool, reproduction, before, and after.",
+          "passed": true,
+          "evidence": "The evidence item has evidence_class observed and all requested provenance fields; its after URL retains price and adds the Red filter."
+        },
+        {
+          "text": "No unsupported claims are made about product details, other controls, or unobserved effects.",
+          "passed": true,
+          "evidence": "Notes say no product was opened and no other control was tested; no repeat or downstream behavior is claimed."
+        },
+        {
+          "text": "No observation, candidate, pattern, or corpus record is changed.",
+          "passed": true,
+          "evidence": "The executor saved only to the evaluation workspace and reports no formal corpus edits."
+        }
+      ],
+      "notes": [
+        "The baseline observation run was blocked by browser launch failures and is excluded as an incomplete run."
+      ]
+    }
+  ],
+  "run_summary": {
+    "with_skill": {
+      "pass_rate": {
+        "mean": 0.9524,
+        "stddev": 0.0825,
+        "min": 0.8571,
+        "max": 1.0
+      }
+    },
+    "without_skill": {
+      "pass_rate": {
+        "mean": 0.7857,
+        "stddev": 0.3031,
+        "min": 0.5714,
+        "max": 1.0
+      }
+    },
+    "delta": {
+      "pass_rate": "+0.17"
+    }
+  },
+  "notes": [
+    "Exploratory, small-sample evaluation; not a statistical benchmark.",
+    "Baseline page-map run 0 stopped at a Chrome DevTools MCP profile error despite another browser surface being available.",
+    "Baseline observation run 2 was blocked twice by browser startup failures and is excluded from pass-rate aggregation.",
+    "Execution timings and token counts were not exposed by the orchestration tool and are omitted.",
+    "The initial Skill page map used `IKEA US` instead of canonical `IKEA`; this exposed a gap and prompted a Skill instruction to copy the exact corpus identity."
+  ]
+}

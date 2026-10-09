@@ -7,4 +7,4 @@
 - Interaction research: not performed; no verification challenge was completed.
 - Active corpus substitute: [Mistral AI](../mistral/site.md)
 
-OpenAI remains a relevant target. Resume only if the user authorizes the verification action or a public route loads without the challenge.
+OpenAI remains a relevant target. Resume only if a public route loads without the challenge; do not solve or bypass the challenge.

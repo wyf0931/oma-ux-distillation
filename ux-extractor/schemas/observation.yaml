@@ -1,0 +1,106 @@
+$schema: https://json-schema.org/draft/2020-12/schema
+title: UX Interaction Observation
+description: One interaction record with per-item provenance; observed means browser-reproduced, while secondary means official documentation only. Intent and purpose stay interpretive.
+type: object
+allOf:
+  - $ref: ./interaction.yaml
+required:
+  - record_type
+  - site
+  - page
+  - context
+  - intent
+  - purpose
+  - evidence
+  - confidence
+properties:
+  record_type:
+    const: observation
+  site:
+    type: string
+    description: Stable product or site name matching its corpus entry.
+  page:
+    type: string
+    description: Page, section, or flow where the interaction was observed.
+  context:
+    type: string
+    description: Relevant page section and initial interface state before the action.
+  intent:
+    type: string
+    description: Likely immediate user goal inferred from action and context; use unknown when unclear. This is not user testimony.
+  purpose:
+    type: string
+    description: Hypothesis about the design purpose of the interaction; never direct evidence.
+  boundaries:
+    type: array
+    description: Optional notes about observed adjacent cases or non-instances relevant to comparison; these do not count as pattern support.
+    items: { type: string }
+  counterexamples:
+    type: array
+    description: Optional notes about an observed interaction that contradicts an identified candidate or pattern under the same trigger and context.
+    items: { type: string }
+  evidence:
+    type: array
+    minItems: 1
+    description: Source-linked evidence for the captured action and response.
+    items:
+      $ref: '#/$defs/evidence'
+  confidence:
+    enum: [low, medium, high]
+    description: For observations, rates confidence in inferred immediate intent only, not captured behavior or purpose.
+  extensions:
+    type: object
+    description: Optional site-specific fields. Preserve unknown fields rather than discarding them.
+    additionalProperties: true
+$defs:
+  evidence:
+    type: object
+    required:
+      - evidence_class
+      - url
+      - captured_at
+      - tool
+      - reproduction
+      - before
+      - after
+    properties:
+      evidence_class:
+        enum: [observed, secondary]
+        description: Use observed for a reproduced action and response; use secondary for behavior described by official documentation but not reproduced.
+      url:
+        type: string
+        format: uri
+        description: Exact public page URL used for the observation or secondary source.
+      page_title:
+        type: string
+        description: Page title at capture time, or unknown.
+      viewport:
+        type: string
+        description: Browser viewport dimensions and relevant emulation state, or unknown.
+      browser:
+        type: string
+        description: Browser name and version when available, or unknown.
+      section:
+        type: string
+        description: Page section containing the interaction, when known.
+      captured_at:
+        type: string
+        format: date
+        description: Date the browser state was captured.
+      tool:
+        type: string
+        description: Browser automation tool used to inspect or reproduce the interaction.
+      reproduction:
+        type: string
+        description: Steps needed to reproduce the observed initial and resulting states.
+      before:
+        type: string
+        description: Directly observed state immediately before the action.
+      after:
+        type: string
+        description: Directly observed state after the action.
+      screenshot:
+        type: [string, "null"]
+        description: Screenshot path when useful, otherwise null. Prefer storing the image beside its observation and using a path relative to that observation; repository-root-relative paths are also valid.
+    additionalProperties: true
+additionalProperties: true

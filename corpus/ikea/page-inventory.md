@@ -7,4 +7,4 @@
 - Browser: Chrome DevTools MCP
 - Evidence class: page evidence only
 
-The accessibility snapshot exposed a global welcome page, video controls, a selected-store accordion, a `Designer stories` section with nine labeled slides, and Previous / Next slide controls. The tested slideshow controls did not yield a reliable, observable state change in the current browser session. No interaction observation or UX pattern is inferred from this page map.
+The accessibility snapshot exposed a global welcome page, video controls, a selected-store accordion, a `Designer stories` section with nine labeled slides, and Previous / Next slide controls. A later observation recorded a Pause-to-Play label change in the homepage slideshow and an associated video element changing from paused to playing; see [the slideshow control observation](../../observations/ikea/homepage-slideshow-pause-control.md). Because automatic motion before activation was not confirmed, this does not count as support for the automatic-motion pattern.

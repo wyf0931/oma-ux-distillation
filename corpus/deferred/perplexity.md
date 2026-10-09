@@ -6,4 +6,4 @@
 - Interaction research: not performed; no verification challenge was completed.
 - Active corpus substitute: [DuckDuckGo / Duck.ai](../duckduckgo/site.md)
 
-Perplexity remains a relevant target. Resume only if the user authorizes the verification action or a public route loads without the challenge.
+Perplexity remains a relevant target. Resume only if a public route loads without the challenge; do not solve or bypass the challenge.

@@ -1,0 +1,57 @@
+{
+  "expectations": [
+    {
+      "text": "Output contains exactly one record_type: page_map and evidence_class: page-evidence.",
+      "passed": true,
+      "evidence": "The blocked note still uses record_type: page_map and page-evidence to mark static capture limits."
+    },
+    {
+      "text": "Does not claim a visible response for a control that was not operated; visible controls are listed as interaction candidates.",
+      "passed": true,
+      "evidence": "The record states no structure or behavior was inspected and makes no behavior claims."
+    },
+    {
+      "text": "Records the requested public URL and states that no interaction was tested in limits.",
+      "passed": true,
+      "evidence": "The exact URL is present and limits explicitly state page structure was not inspected."
+    },
+    {
+      "text": "No formal corpus or pattern files are changed.",
+      "passed": true,
+      "evidence": "The executor reports no formal repository files were changed."
+    },
+    {
+      "text": "The page-map site string exactly matches the canonical corpus site IKEA; locale remains in page/context.",
+      "passed": false,
+      "evidence": "The blocked artifact uses `site: IKEA US`, not the canonical `IKEA` value."
+    },
+    {
+      "text": "When browser capture succeeds, visible_structure and interaction_candidates contain concrete snapshot-based content rather than empty placeholders.",
+      "passed": false,
+      "evidence": "Both arrays are empty despite an available Playwright fallback used in the paired Skill run."
+    },
+    {
+      "text": "When the preferred browser surface fails and another supported surface is available, the run tries the fallback and records the actual tool and any isolation limitation.",
+      "passed": false,
+      "evidence": "The baseline stopped after Chrome DevTools MCP failed and did not try Playwright."
+    }
+  ],
+  "summary": {
+    "passed": 4,
+    "failed": 3,
+    "total": 7,
+    "pass_rate": 0.5714
+  },
+  "claims": [],
+  "user_notes_summary": {
+    "uncertainties": [
+      "Chrome DevTools MCP failed; another browser surface remained available but was not used."
+    ],
+    "needs_review": [],
+    "workarounds": []
+  },
+  "eval_feedback": {
+    "suggestions": [],
+    "overall": "Assertions are evidence-based; page-map and candidate tasks differentiate evidence constraints, while the interaction baseline remains blocked by browser setup."
+  }
+}
